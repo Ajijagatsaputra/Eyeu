@@ -80,9 +80,7 @@
                         <li>
                             <a href="{{ url_for( 'about') }} " class="block py-2 pr-4 pl-3 text-white text-base font-semibold bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white transition-all duration-300">Tentang Kami</a>
                         </li>
-                        <li>
-                            <a href="{{ url_for( 'feedback') }} " class="block py-2 pr-4 pl-3 text-gray-900 rounded font-semibold text-base hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 transition-all duration-300 dark:border-gray-700 ">Feedback</a>
-                        </li>
+                        
                     </ul>
                 </div>
             </div>
@@ -122,17 +120,10 @@
         </div>
         <div>
           <h5 class="leading-none text-2xl font-bold text-gray-900 dark:text-white pb-1">{{ jumlah_ulasan }} ulasan</h5>
-          <p class="text-sm font-normal text-gray-500 dark:text-gray-400">Leads generated per week</p>
+          <p class="text-sm font-normal text-gray-500 dark:text-gray-400">Data ulasan yang diberikan pengguna</p>
         </div>
       </div>
-      <div>
-        <span class="bg-green-100 text-green-800 text-xs font-medium inline-flex items-center px-2.5 py-1 rounded-md dark:bg-green-900 dark:text-green-300">
-          <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 14">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13V1m0 0L1 5m4-4 4 4"/>
-          </svg>
-          42.5%
-        </span>
-      </div>
+      
     </div>
   
     
@@ -632,6 +623,126 @@
                 </div>
             </div>
         </footer>
+
+        <!-- Modal toggle -->
+    <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="z-10 fixed bottom-6 start-6 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 transition-all duration-300" type="button">
+        Beri kami ulasan
+    </button>
+    
+    <!-- Main modal -->
+    <div id="authentication-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+      <div class="relative p-4 w-full max-w-md max-h-full">
+          <!-- Modal content -->
+          <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+              <!-- Modal header -->
+              <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-lg dark:border-gray-600">
+                  <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                      Ulasan
+                  </h3>
+                  <button type="button" class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="authentication-modal">
+                      <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                      </svg>
+                      <span class="sr-only">Close modal</span>
+                  </button>
+              </div>
+              <!-- Modal body -->
+              <div class="p-4 md:p-5">
+                <p class="mb-4 text-sm font-normal text-gray-500 dark:text-gray-400">Ulasan Anda sangat berharga bagi kami untuk meningkatkan sistem kami🥳.</p>
+                  <form class="space-y-4" method="post">
+                      <div>
+                          <label for="nama" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
+                          <input type="text" id="nama" name="nama"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="nama Anda" required>
+                      </div>
+                      <div>
+                          <label for="review" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ulasan</label>
+                          <textarea id="review" name="review" rows="4" placeholder="Ketik ulasan" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required></textarea>
+                      </div>
+                      
+                      <button type="submit" onclick="submitForm()" class="w-full text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-base px-5 py-3 text-center transition-all duration-300 ">Kirim</button>
+                      
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div> 
+  
+    
+
+
+
+    <script src="https://unpkg.com/flowbite@2.1.1/dist/flowbite.js "></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts "></script>      
+    <script>
+        function showContent(contentId) {
+            document.getElementById("content-input-review").style.display = (contentId === 'input-review') ? 'block' : 'none';
+            document.getElementById("content-visualisasi").style.display = (contentId === 'visualisasi') ? 'block' : 'none';
+        }
+    
+        function submitForm() {
+            // Get form data
+            var formData = {
+                'nama': document.getElementById('nama').value,
+                'review': document.getElementById('review').value
+            };
+    
+            // Send AJAX request to submit form
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/submit', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // Form submitted successfully
+                    alert("Form submitted successfully!");
+    
+                    // Reset form fields
+                    document.getElementById('nama').value = '';
+                    document.getElementById('review').value = '';
+                }
+            };
+            xhr.send(JSON.stringify(formData));
+        }
+    
+    
+        function fetchVisualizationData() {
+            window.location.href = "/visualisasi";
+        }
+    
+        function createVisualizationChart(data) {
+            // Tempatkan grafik di elemen canvas di HTML
+            var ctx = document.getElementById('visualizationCanvas').getContext('2d');
+            var visualizationChart = new Chart(ctx, {
+                type: 'bar', // Tipe grafik, bisa 'line', 'bar', dll.
+                data: {
+                    labels: data.labels,
+                    datasets: [{
+                        label: 'Jumlah Review',
+                        data: data.values,
+                        backgroundColor: [
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(255, 206, 86, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(255,99,132,1)',
+                            'rgba(255, 206, 86, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+    </script>
 
 
 

@@ -17,72 +17,329 @@
 </head>
 
 <body>
-    <div class="flex flex-col justify-center px-6 py-16 lg:px-8">
-        <div class="sm:mx-auto mb-9 sm:w-full sm:max-w-sm">
-            <a href="{{url_for('home')}}">
-                <img class="mx-auto h-11  w-auto" src="{{url_for('static',filename='src/logo/logo_name.svg')}}" alt="EyeU">
+     <!-- Navbar -->
+     <nav class="z-50 fixed w-full bg-white bg-opacity-90 sm:px-4 py-2.5 rounded" style="backdrop-filter: blur(10px)" ;>
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4 lg:px-8 p-4">
+            <a href="{{ url_for( 'home') }} " class="flex items-center ">
+                <img src="{{url_for( 'static',filename='src/logo/logo.svg' )}} " class="mr-3 h-6 sm:h-9 " alt="Flowbite Logo ">
+                <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white ">EyeU</span>
             </a>
-            <h2 class="mt-5 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 ">Unggah dan Deteksi</h2>
+
+            <div class="relative flex md:order-2 space-x-3 md:space-x-0 ">
+
+                <button id="dropdownUserAvatarButton" data-dropdown-toggle="dropdownAvatar" data-dropdown-placement="bottom-end" class="flex justify-end font-medium items-center text-sm rounded-full md:me-0 hover:text-blue-900" type="button">
+                    <span class="sr-only">Open user menu</span>
+                    <svg class="h-8 w-8 text-gray-300 mr-1" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" clip-rule="evenodd" />
+                      </svg>
+                <svg class="w-2.5 h-2.5 ml-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m1 1 4 4 4-4"/>
+                    </svg>
+                    </button>
+
+                <!-- Dropdown menu -->
+                <div id="dropdownAvatar" class="  z-10   hidden bg-white divide-y divide-gray-100 rounded-lg shadow-md w-auto transition-opacity duration-300  ">
+                    <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+                        <div class="text-base font-semibold">{{user.name}}</div>
+                        <div class="font-normal truncate">{{user.email}}</div>
+                    </div>
+                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownUserAvatarButton">
+                        <li>
+                            <a href="{{ url_for('profil')}}" class="block px-2 py-2  mr-2 ml-2 font-normal rounded-md  hover:bg-gray-100 transition-all duration-300">Profil</a>
+                        </li>
+                        <li>
+                            <a href="#" class="block px-2 py-2  mr-2 ml-2 font-normal rounded-md  hover:bg-gray-100 transition-all duration-300">Riwayat Deteksi</a>
+                        </li>
+                        
+                    </ul>
+                    <div class="py-2 text-sm">
+                        <a href="{{ url_for( 'logout') }}" class="block px-2 py-2  mr-2 ml-2  font-normal rounded-md text-red-700  hover:bg-red-100 transition-all duration-300">Keluar</a>
+                    </div>
+                </div>
+
+
+                <button data-collapse-toggle="navbar-user " type="button " class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200
+                    transition-all duration-300" aria-controls="navbar-user " aria-expanded="false ">
+                <span class="sr-only ">Open main menu</span>
+                <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M1 1h14M1 6h14M1 11h7"/>
+                  </svg>
+            </button>
+            </div>
+            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1 transition-all duration-300 " id="navbar-user ">
+                <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 ">
+                    <li>
+                        <a href="{{ url_for( 'home') }} " class="block py-2 pr-4 pl-3 text-gray-900 rounded font-semibold text-base hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 transition-all duration-300 " aria-current="page ">Beranda</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for( 'konsultasi') }} " class="block py-2 pr-4 pl-3 text-gray-900 rounded font-semibold text-base hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 transition-all duration-300 ">Konsultasi</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for( 'produk') }} " class="block py-2 pr-4 pl-3 text-gray-900 rounded font-semibold text-base hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 transition-all duration-300 ">Produk</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for( 'about') }} " class="block py-2 pr-4 pl-3 text-gray-900 rounded font-semibold text-base hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 transition-all duration-300 ">Tentang Kami</a>
+                    </li>
+                </ul>
+            </div>
         </div>
+    </nav>
+
+    
+    <section class="pt-4 lg:pt-24 xl:pt-24  sm:py-6 flex justify-center items-center ">
+        <div class="flex flex-col justify-center px-6 py-16 lg:px-8">
+            <div class="sm:mx-auto mb-9 sm:w-full sm:max-w-sm">
+                <h2 class="mt-5 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 ">Unggah dan Deteksi</h2>
+            </div>
 
 
-        <div class="w-full mx-auto lg:w-5/12 xl:w-4/12 p-4 bg-white border border-gray-200 rounded-2xl sm:p-6 md:p-8">
-            <div class="flex p-4 mb-4 text-sm text-yellow-700 rounded-lg bg-yellow-50 " role="alert">
-                <svg class="flex-shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                </svg>
-                <span class="sr-only">Warning</span>
-                <div>
-                    <span class="font-semibold">Perhatian!</span> Sistem deteksi ini menggunakan teknologi kecerdasan buatan dengan nilai akurasi 90 %, yang artinya hasil yang ditampilkan masih mempunyai kesalahan prediksi. Kami menyarankan Anda untuk
-                    melakukan deteksi 3-5 kali dengan sudut foto yang berbeda.
+            <div class="w-full mx-auto lg:w-5/12 xl:w-4/12 p-4 bg-white border border-gray-200 rounded-2xl sm:p-6 md:p-8">
+                <div class="flex p-4 mb-4 text-sm text-yellow-700 rounded-lg bg-yellow-50 " role="alert">
+                    <svg class="flex-shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                    </svg>
+                    <span class="sr-only">Warning</span>
+                    <div>
+                        <span class="font-semibold">Perhatian!</span> Sistem deteksi ini menggunakan teknologi kecerdasan buatan dengan nilai akurasi 90 %, yang artinya hasil yang ditampilkan masih mempunyai kesalahan prediksi. Kami menyarankan Anda untuk
+                        melakukan deteksi 3-5 kali dengan sudut foto yang berbeda.
+                    </div>
                 </div>
-            </div>
-            <form class="space-y-6" method="POST" enctype="multipart/form-data">
-                <div>
-                    <label class="block mb-2 text-base font-medium text-gray-900 dark:text-white">Unggah Gambar</label>
-                    <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50  focus:outline-none" aria-describedby="file_input_help" type="file" name="file" accept=".jpg, .jpeg, .png" id="file_input" type="file" required>
-                    <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">Format : PNG, JPG atau JPEG.</p>
+                <form class="space-y-6" method="POST" enctype="multipart/form-data">
+                    <div>
+                        <label class="block mb-2 text-base font-medium text-gray-900 dark:text-white">Unggah Gambar</label>
+                        <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50  focus:outline-none" aria-describedby="file_input_help" type="file" name="file" accept=".jpg, .jpeg, .png" id="file_input" type="file" required>
+                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">Format : PNG, JPG atau JPEG.</p>
+                    </div>
+
+
+                    <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-3 text-center transition-all
+                    duration-300">Deteksi</button>
+
+                </form>
+                {% if message %} {% if predicted_class == 'Normal' %}
+                <div class="flex mt-5 p-4 text-sm text-green-700 rounded-lg bg-green-50 " role="alert">
+                    <svg class="flex-shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                    </svg>
+                    <span class="sr-only">Success</span>
+                    <div>
+                        <span class="font-semibold">Alhamdulillah...</span> Mata Anda normal. Tetap jaga mata Anda normal, jaga kesehatan matamu ya!.
+                    </div>
+                </div>
+                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg relative mt-2" role="alert">
+                    <p class="font-bold">{{ message }}</p>
+                    <img src="{{ img_str }}" alt="Predicted Image" class="mt-2 rounded-md">
                 </div>
 
-
-                <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-3 text-center transition-all
-                duration-300">Deteksi</button>
-
-            </form>
-            {% if message %} {% if predicted_class == 'Normal' %}
-            <div class="flex mt-5 p-4 text-sm text-green-700 rounded-lg bg-green-50 " role="alert">
-                <svg class="flex-shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                </svg>
-                <span class="sr-only">Success</span>
-                <div>
-                    <span class="font-semibold">Alhamdulillah...</span> Mata Anda normal. Tetap jaga mata Anda normal, jaga kesehatan matamu ya!.
+                {% else %}
+                <div class="flex mt-5 p-4 text-sm text-red-700 rounded-lg bg-red-50 " role="alert">
+                    <svg class="flex-shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                    </svg>
+                    <span class="sr-only">Danger</span>
+                    <div>
+                        <span class="font-semibold">Mata Anda terdeteksi Katarak.</span> Segera konsultasikan ke menu konsultasi di website atau aplikasi kami ya!.
+                    </div>
                 </div>
-            </div>
-            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg relative mt-2" role="alert">
-                <p class="font-bold">{{ message }}</p>
-                <img src="{{ img_str }}" alt="Predicted Image" class="mt-2 rounded-md">
-            </div>
-
-            {% else %}
-            <div class="flex mt-5 p-4 text-sm text-red-700 rounded-lg bg-red-50 " role="alert">
-                <svg class="flex-shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                </svg>
-                <span class="sr-only">Danger</span>
-                <div>
-                    <span class="font-semibold">Mata Anda terdeteksi Katarak.</span> Segera konsultasikan ke menu konsultasi di website atau aplikasi kami ya!.
+                <div class="{% if predicted_class == 'Katarak' %} bg-red-100 border border-red-400 text-red-700 {% endif %} px-4 py-3 rounded-lg relative mt-2" role="alert">
+                    <p class="font-bold">{{ message }}</p>
+                    <img src="{{ img_str }}" alt="Predicted Image" class="mt-2 rounded-md">
                 </div>
-            </div>
-            <div class="{% if predicted_class == 'Katarak' %} bg-red-100 border border-red-400 text-red-700 {% endif %} px-4 py-3 rounded-lg relative mt-2" role="alert">
-                <p class="font-bold">{{ message }}</p>
-                <img src="{{ img_str }}" alt="Predicted Image" class="mt-2 rounded-md">
-            </div>
-            {% endif %} {% endif %}
+                {% endif %} {% endif %}
 
 
+            </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-white pt-12 pb-4 ">
+        <div class="mx-auto w-full max-w-screen-xl p-4 px-4 lg:px-8 ">
+            <div class="md:flex md:justify-between ">
+                <div class="mb-6 md:mb-0 ">
+                    <a href="{{ url_for( 'home') }} " class="flex items-center ">
+                        <img src="{{url_for( 'static',filename='src/logo/logo.svg' )}} " class="mr-3 h-6 sm:h-9 " alt="Flowbite Logo ">
+                        <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white ">EyeU</span>
+                    </a>
+                </div>
+                <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-2 ">
+                    <div>
+                        <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white ">Menu</h2>
+                        <ul class="text-gray-500 dark:text-gray-400 font-medium ">
+                            <li class="mb-4 ">
+                                <a href="{{ url_for( 'home') }} " class="hover:underline ">Beranda</a>
+                            </li>
+                            <li class="mb-4">
+                                <a href="{{ url_for( 'konsultasi') }} " class="hover:underline ">Konsultasi</a>
+                            </li>
+                            <li class="mb-4 ">
+                                <a href="{{ url_for( 'produk') }} " class="hover:underline ">Produk</a>
+                            </li>
+                            <li class="mb-4 ">
+                                <a href="{{ url_for( 'about') }} " class="hover:underline ">Tentang Kami</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div>
+                        <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white ">Legal</h2>
+                        <ul class="text-gray-500 dark:text-gray-400 font-medium ">
+                            <li class="mb-4 ">
+                                <a href="# " class="hover:underline ">Privacy Policy</a>
+                            </li>
+                            <li>
+                                <a href="# " class="hover:underline ">Terms &amp; Conditions</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8 " />
+            <div class="sm:flex sm:items-center sm:justify-between ">
+                <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400 ">© 2023 <a href="https://flowbite.com/ " class="hover:underline ">EyeU</a>. All Rights Reserved.
+                </span>
+                <div class="flex mt-4 sm:justify-center sm:mt-0 ">
+                    <a href="# " class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5 ">
+                        <svg class="w-4 h-4 " aria-hidden="true " xmlns="http://www.w3.org/2000/svg " fill="currentColor " viewBox="0 0 20 20 ">
+                        <path fill-rule="evenodd " d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518
+                1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1
+                2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z " clip-rule="evenodd "/>
+                  </svg>
+                        <span class="sr-only ">GitHub account</span>
+                    </a>
+                    <a href="# " class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5 ">
+                        <svg class="w-4 h-4 " aria-hidden="true " xmlns="http://www.w3.org/2000/svg " fill="currentColor " viewBox="0 0 20 20 ">
+                    <path fill-rule="evenodd " d="M10 0a10 10 0 1 0 10 10A10.009 10.009 0 0 0 10 0Zm6.613 4.614a8.523 8.523 0 0 1 1.93 5.32 20.094 20.094 0 0 0-5.949-.274c-.059-.149-.122-.292-.184-.441a23.879 23.879 0 0 0-.566-1.239 11.41 11.41 0 0
+                0 4.769-3.366ZM8 1.707a8.821 8.821 0 0 1 2-.238 8.5 8.5 0 0 1 5.664 2.152 9.608 9.608 0 0 1-4.476 3.087A45.758 45.758 0 0 0 8 1.707ZM1.642 8.262a8.57 8.57 0 0 1 4.73-5.981A53.998 53.998 0 0 1 9.54 7.222a32.078 32.078 0 0 1-7.9 1.04h.002Zm2.01
+                7.46a8.51 8.51 0 0 1-2.2-5.707v-.262a31.64 31.64 0 0 0 8.777-1.219c.243.477.477.964.692 1.449-.114.032-.227.067-.336.1a13.569 13.569 0 0 0-6.942 5.636l.009.003ZM10 18.556a8.508 8.508 0 0 1-5.243-1.8 11.717 11.717 0 0 1 6.7-5.332.509.509 0
+                0 1 .055-.02 35.65 35.65 0 0 1 1.819 6.476 8.476 8.476 0 0 1-3.331.676Zm4.772-1.462A37.232 37.232 0 0 0 13.113 11a12.513 12.513 0 0 1 5.321.364 8.56 8.56 0 0 1-3.66 5.73h-.002Z " clip-rule="evenodd "/>
+                </svg>
+                        <span class="sr-only ">Dribbble account</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal toggle -->
+    <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="z-10 fixed bottom-6 start-6 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 transition-all duration-300" type="button">
+        Beri kami ulasan
+    </button>
+    
+    <!-- Main modal -->
+    <div id="authentication-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+      <div class="relative p-4 w-full max-w-md max-h-full">
+          <!-- Modal content -->
+          <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+              <!-- Modal header -->
+              <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-lg dark:border-gray-600">
+                  <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                      Ulasan
+                  </h3>
+                  <button type="button" class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="authentication-modal">
+                      <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                      </svg>
+                      <span class="sr-only">Close modal</span>
+                  </button>
+              </div>
+              <!-- Modal body -->
+              <div class="p-4 md:p-5">
+                <p class="mb-4 text-sm font-normal text-gray-500 dark:text-gray-400">Ulasan Anda sangat berharga bagi kami untuk meningkatkan sistem kami🥳.</p>
+                  <form class="space-y-4" method="post">
+                      <div>
+                          <label for="nama" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
+                          <input type="text" id="nama" name="nama"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="nama Anda" required>
+                      </div>
+                      <div>
+                          <label for="review" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ulasan</label>
+                          <textarea id="review" name="review" rows="4" placeholder="Ketik ulasan" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required></textarea>
+                      </div>
+                      
+                      <button type="submit" onclick="submitForm()" class="w-full text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-base px-5 py-3 text-center transition-all duration-300 ">Kirim</button>
+                      
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div> 
+  
+    
+
+
+
+    <script src="https://unpkg.com/flowbite@2.1.1/dist/flowbite.js "></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts "></script>      
+    <script>
+        function showContent(contentId) {
+            document.getElementById("content-input-review").style.display = (contentId === 'input-review') ? 'block' : 'none';
+            document.getElementById("content-visualisasi").style.display = (contentId === 'visualisasi') ? 'block' : 'none';
+        }
+    
+        function submitForm() {
+            // Get form data
+            var formData = {
+                'nama': document.getElementById('nama').value,
+                'review': document.getElementById('review').value
+            };
+    
+            // Send AJAX request to submit form
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/submit', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // Form submitted successfully
+                    alert("Form submitted successfully!");
+    
+                    // Reset form fields
+                    document.getElementById('nama').value = '';
+                    document.getElementById('review').value = '';
+                }
+            };
+            xhr.send(JSON.stringify(formData));
+        }
+    
+    
+        function fetchVisualizationData() {
+            window.location.href = "/visualisasi";
+        }
+    
+        function createVisualizationChart(data) {
+            // Tempatkan grafik di elemen canvas di HTML
+            var ctx = document.getElementById('visualizationCanvas').getContext('2d');
+            var visualizationChart = new Chart(ctx, {
+                type: 'bar', // Tipe grafik, bisa 'line', 'bar', dll.
+                data: {
+                    labels: data.labels,
+                    datasets: [{
+                        label: 'Jumlah Review',
+                        data: data.values,
+                        backgroundColor: [
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(255, 206, 86, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(255,99,132,1)',
+                            'rgba(255, 206, 86, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+    </script>
 
     <!-- Uncomment the following script if you want to include camera access -->
     <!-- 

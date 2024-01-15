@@ -81,9 +81,7 @@
                     <li>
                         <a href="{{ url_for( 'about') }} " class="block py-2 pr-4 pl-3 text-gray-900 rounded font-semibold text-base hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 transition-all duration-300 dark:border-gray-700 ">Tentang Kami</a>
                     </li>
-                    <li>
-                        <a href="{{ url_for( 'feedback') }} " class="block py-2 pr-4 pl-3 text-gray-900 rounded font-semibold text-base hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 transition-all duration-300 dark:border-gray-700 ">Feedback</a>
-                    </li>
+                    
                 </ul>
             </div>
 
@@ -329,7 +327,7 @@
                         </span>
                         <span class="text-sm ">14 days ago</span>
                     </div>
-                    <img class="mb-5 rounded-lg " src="https://upk.kemkes.go.id/new/imagex/content/3d2a475ae1bb79fdd4681d98887904af.png" alt=" " />
+                    <img class="mb-5 rounded-lg " src="{{url_for( 'static',filename='src/images/mata.jpg' )}}" alt=" " style="height: 200px; width:min-content;"/>
                     <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white "><a href="{{ url_for( 'blog') }} ">3 Tips Menjaga Kesehatan Mata</a></h2>
                     <p class="mb-5 font-light text-gray-500 dark:text-gray-400 ">Tetap terapkan perilaku hidup bersih dan sehat, serta melakukan pemeriksaan ke dokter mata apabila mengalami gangguan penglihatan ...</p>
                     <div class="flex justify-between items-center ">
@@ -349,7 +347,7 @@
                         </span>
                         <span class="text-sm ">14 days ago</span>
                     </div>
-                    <img class="mb-5 rounded-lg " src="https://ayosehat.kemkes.go.id/imagex/content/6f5adc659e08bd6088e456d8a9334233.webp" alt=" " />
+                    <img class="mb-5 rounded-lg " src="{{url_for( 'static',filename='src/images/katarak-4.jpg' )}}" alt=" " style="height: 200px; width:min-content;"/>
                     <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white "><a href="# ">Waktu yang Tepat untuk Deteksi Kesehatan Mata</a></h2>
                     <p class="mb-5 font-light text-gray-500 dark:text-gray-400 ">Waktu yang paling tepat untuk deteksi mata yaitu saat kita merasakan gejala gangguan penglihatan seperti mata lelah, rabun jauh dan masih banyak lagi.</p>
                     <div class="flex justify-between items-center ">
@@ -369,7 +367,7 @@
                         </span>
                         <span class="text-sm ">14 days ago</span>
                     </div>
-                    <img class="mb-5 rounded-lg " src="https://dk4fkkwa4o9l0.cloudfront.net/production/uploads/article/image/36/kelilipan.jpg" alt=" " />
+                    <img class="mb-5 rounded-lg " src="{{url_for( 'static',filename='src/images/kelilipan.jpg')}}" alt=" " style="height: 200px; width:min-content;"/>
                     <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white "><a href="# ">Kenali Masalah Mata, Kondisi Mata, dan Penyakit pada Mata</a></h2>
                     <p class="mb-5 font-light text-gray-500 dark:text-gray-400 ">Penyakit mata biasanya disebabkan karena alergi, infeksi, atau kurangnya cairan yang mengakibatkan mata menjadi kering sehingga terasa pedih.</p>
                     <div class="flex justify-between items-center ">
@@ -496,11 +494,6 @@
     <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="z-10 fixed bottom-6 start-6 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 transition-all duration-300" type="button">
         Beri kami ulasan
     </button>
-
-    
-    
-
-   
     
     <!-- Main modal -->
     <div id="authentication-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">

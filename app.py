@@ -95,7 +95,7 @@ def login():
             session['password'] = user['password']
             return redirect(url_for('home'))
         else:
-            mesage = 'Please enter correct email / password !'
+            mesage = 'Mohon periksa E-mail atau password Anda!'
 
     return render_template('login.html', mesage=mesage)
 
@@ -120,11 +120,11 @@ def register():
         cursor.execute('SELECT * FROM user WHERE email = % s', (email, ))
         account = cursor.fetchone()
         if account:
-            mesage = 'Account already exists !'
+            mesage = 'Akun sudah tersedia!'
         elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
-            mesage = 'Invalid email address !'
+            mesage = 'Alamat E-mail tidak diketahui!'
         elif not name or not password or not email:
-            mesage = 'Please fill out the form !'
+            mesage = 'Mohon Isi form terlebih dahulu !'
         else:
             cursor.execute(
                 'INSERT INTO user VALUES (NULL, % s, % s, % s)', (name, email, password, ))
@@ -272,6 +272,14 @@ def history():
 @app.route('/deteksi', methods=['GET', 'POST'])
 @login_required
 def deteksi():
+    id = session.get('id')
+    message = ''
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+
+    cursor.execute('SELECT * FROM user WHERE id = %s', (id,))
+    user = cursor.fetchone()
+     
+
     if request.method == 'POST':
         # Cek apakah file telah dipilih
         if 'file' not in request.files:
@@ -304,10 +312,10 @@ def deteksi():
         # Konversi gambar ke format yang dapat ditampilkan di HTML
         img_str = image_to_base64(img)
 
-        return render_template('deteksi.html', message=f'Prediksi: {predicted_class}',
+        return render_template('deteksi.html',user=user, message=f'Prediksi: {predicted_class}',
                                predicted_class=predicted_class, img_str=img_str)
 
-    return render_template('deteksi.html')
+    return render_template('deteksi.html', user=user, message=message)
 
 def image_to_base64(image):
     # Konversi gambar menjadi format base64 agar bisa ditampilkan di HTML
@@ -696,7 +704,7 @@ jumlah_positif = len(data[data['label'] == 1])
 jumlah_negatif = len(data[data['label'] == 0])
 jumlah_netral = len(data[data['label'] == -1])
 
-
+#Menghitung jumlah ulasan pada tentang kami 
 def hitung_jumlah_ulasan(host='localhost', user='root', password='', database='eyeu'):
     try:
         # Konfigurasi koneksi ke database MySQL
